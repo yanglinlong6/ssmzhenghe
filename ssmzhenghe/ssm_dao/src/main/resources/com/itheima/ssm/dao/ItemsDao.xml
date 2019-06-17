@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.ssm.dao.ItemsDao">
+    <insert id="save">
+        insert into items(id, name, price, pic, createtime, detail) VALUES (#{id},#{name},#{price},#{pic},#{createtime},#{detail});
+    </insert>
+
+    <select id="findAll" resultType="com.itheima.ssm.domain.Items">
+        select *
+        from items;
+    </select>
+</mapper>

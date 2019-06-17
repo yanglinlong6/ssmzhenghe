@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/cache
+        http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--<context:component-scan base-package="com.itheima.ssm.service"></context:component-scan>-->
+<!--事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--配置切入点方法的细化-->
+    <tx:advice id="myAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="insert*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="update*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="delete*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="edit*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+            <!--<tx:method name="*" read-only="true"></tx:method>-->
+        </tx:attributes>
+    </tx:advice>
+    <!--配置aop-->
+    <aop:config>
+        <aop:pointcut id="myPointcut" expression="execution(* com.itheima.ssm.service..*.*(..))"></aop:pointcut>
+        <aop:advisor advice-ref="myAdvice" pointcut-ref="myPointcut"></aop:advisor>
+    </aop:config>
+    <import resource="classpath:applicationContext-mybatis.xml"></import>
+</beans>
