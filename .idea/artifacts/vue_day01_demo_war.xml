@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="vue_day01_demo:war">
+    <output-path>D:/框架/day63_vuejs 第1天/代码/vue_day01_demo/target</output-path>
+    <root id="archive" name="vue_day01_demo-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="vue_day01_demo:war exploded" />
+    </root>
+  </artifact>
+</component>

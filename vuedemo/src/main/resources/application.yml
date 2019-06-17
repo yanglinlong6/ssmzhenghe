@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/itcastvue
+    username: root
+
+  jpa:
+    database: MySQL
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
